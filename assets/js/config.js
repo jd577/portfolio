@@ -27,7 +27,7 @@ export const config = {
   email: 'jawadakhtar292@gmail.com',
   linkedin: 'https://www.linkedin.com/in/jawad-akhtar-b710023a9',
   github: 'https://github.com/jd577',
-  cvUrl: '', // "[Add CV PDF]" until set — e.g. "assets/Jawad-Akhtar-CV.pdf"
+  cvUrl: 'assets/Jawad-Akhtar-CV.pdf',
   cvFileName: 'Jawad-Akhtar-CV.pdf',
 
   /* Optional project links — leave empty to render "[Add GitHub URL]" / "[Add Demo URL]". */
