@@ -186,8 +186,10 @@ const initReveal = (scope = document) => {
   const targets = Array.from(scope.querySelectorAll('[data-reveal]'));
   if (!targets.length) return;
 
+  const reveal = (node) => node.classList.add('is-revealed');
+
   if (prefersReducedMotion() || !('IntersectionObserver' in window)) {
-    targets.forEach((node) => node.classList.add('is-revealed'));
+    targets.forEach(reveal);
     return;
   }
 
@@ -196,16 +198,23 @@ const initReveal = (scope = document) => {
       (entries) => {
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
-          entry.target.classList.add('is-revealed');
+          reveal(entry.target);
           revealObserver.unobserve(entry.target);
         });
       },
-      { rootMargin: '0px 0px -10% 0px', threshold: 0.08 },
+      // threshold 0: reveal as soon as ANY part enters the viewport.
+      // Percentage thresholds never fire for sections taller than the
+      // screen (e.g. Projects on a phone), leaving them invisible.
+      { rootMargin: '0px 0px -8% 0px', threshold: 0 },
     );
   }
 
   targets.forEach((node) => {
-    if (!node.classList.contains('is-revealed')) revealObserver.observe(node);
+    if (node.classList.contains('is-revealed')) return;
+    // Elements already at or above the current viewport (mid-page reload,
+    // anchor jumps) reveal immediately instead of waiting for a scroll.
+    if (node.getBoundingClientRect().top < window.innerHeight) reveal(node);
+    else revealObserver.observe(node);
   });
 };
 
