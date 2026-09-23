@@ -1,0 +1,629 @@
+/* ---------------------------------------------------------------------------
+   Components: buttons, badges, tabs, accordions, timelines, panels
+   --------------------------------------------------------------------------- */
+
+/* --- Buttons ------------------------------------------------------------- */
+
+.btn {
+  --btn-bg: var(--surface);
+  --btn-fg: var(--ink);
+  --btn-bd: var(--line-strong);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.72rem 1.15rem;
+  border: 1px solid var(--btn-bd);
+  border-radius: 10px;
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  font-family: inherit;
+  font-size: 0.925rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.005em;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: transform 0.18s var(--ease), box-shadow 0.18s var(--ease),
+    background-color 0.18s var(--ease), border-color 0.18s var(--ease), color 0.18s var(--ease);
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.btn--primary {
+  --btn-bg: var(--accent);
+  --btn-fg: var(--accent-fg);
+  --btn-bd: var(--accent);
+}
+
+.btn--primary:hover {
+  --btn-bg: var(--accent-hover);
+  --btn-bd: var(--accent-hover);
+  color: var(--accent-fg);
+}
+
+.btn--ghost {
+  --btn-bg: transparent;
+  --btn-bd: var(--line-strong);
+  color: var(--ink);
+}
+
+.btn--ghost:hover {
+  --btn-bg: var(--surface-2);
+  --btn-bd: var(--accent-border);
+  color: var(--ink);
+}
+
+.btn--quiet {
+  --btn-bg: var(--surface-2);
+  --btn-bd: var(--line);
+  color: var(--ink-2);
+  font-weight: 550;
+}
+
+.btn--sm {
+  padding: 0.45rem 0.8rem;
+  font-size: 0.83rem;
+  border-radius: 8px;
+}
+
+.btn--icon {
+  padding: 0.5rem;
+  border-radius: 8px;
+}
+
+.btn .icon {
+  width: 1.05rem;
+  height: 1.05rem;
+}
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+.link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: none;
+  border: 0;
+  padding: 0;
+  color: var(--accent-text);
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-underline-offset: 0.2em;
+}
+
+.link-btn:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
+/* --- Status badge -------------------------------------------------------- */
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.42rem 0.9rem 0.42rem 0.7rem;
+  border: 1px solid var(--accent-border);
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent-text);
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+
+.status__dot {
+  position: relative;
+  width: 0.5rem;
+  height: 0.5rem;
+  flex: none;
+  border-radius: 50%;
+  background: var(--ok);
+}
+
+.status__dot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--ok);
+  animation: pulse 2.6s var(--ease) infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  70% {
+    transform: scale(3);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+/* --- Tabs (accessible tablist) ------------------------------------------- */
+
+.tabs {
+  display: flex;
+  gap: 0.3rem;
+  overflow-x: auto;
+  padding: 0.3rem;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface-2);
+  scrollbar-width: thin;
+}
+
+.tabs--column {
+  flex-direction: column;
+  overflow-x: visible;
+  overflow-y: auto;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  flex: none;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 550;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.18s var(--ease), color 0.18s var(--ease),
+    border-color 0.18s var(--ease);
+}
+
+.tab:hover {
+  color: var(--ink);
+  background: var(--surface);
+}
+
+.tab[aria-selected='true'] {
+  background: var(--surface);
+  border-color: var(--accent-border);
+  color: var(--ink);
+  box-shadow: var(--shadow-xs);
+}
+
+.tab .icon {
+  width: 1.05rem;
+  height: 1.05rem;
+  color: var(--accent-text);
+}
+
+.tab__count {
+  margin-left: auto;
+  padding-left: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: var(--muted);
+}
+
+.tab .icon {
+  flex: none;
+}
+
+/* --- Skill rows ---------------------------------------------------------- */
+
+.skill-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.68rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  transition: border-color 0.18s var(--ease), transform 0.18s var(--ease);
+}
+
+.skill-row:hover {
+  border-color: var(--accent-border);
+  transform: translateX(2px);
+}
+
+.skill-row__name {
+  font-size: 0.93rem;
+  color: var(--ink);
+}
+
+.level {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex: none;
+}
+
+.level__dots {
+  display: inline-flex;
+  gap: 3px;
+}
+
+.level__dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--line-strong);
+}
+
+.level__dot.is-on {
+  background: var(--accent);
+}
+
+.level__label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.level--core .level__label {
+  color: var(--accent-text);
+}
+
+/* --- Legend -------------------------------------------------------------- */
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.4rem;
+  padding: 0.85rem 1rem;
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+}
+
+.legend__item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+/* --- Accordion ----------------------------------------------------------- */
+
+.accordion {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.accordion__trigger {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.9rem 1.05rem;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.93rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.18s var(--ease);
+}
+
+.accordion__trigger:hover {
+  background: var(--surface-2);
+}
+
+.accordion__chevron {
+  margin-left: auto;
+  flex: none;
+  color: var(--muted);
+  transition: transform 0.25s var(--ease);
+}
+
+.accordion__trigger[aria-expanded='true'] .accordion__chevron {
+  transform: rotate(180deg);
+  color: var(--accent-text);
+}
+
+.accordion__panel {
+  padding: 0 1.05rem 1.05rem;
+  border-top: 1px solid var(--line);
+  padding-top: 1rem;
+}
+
+.accordion__panel[hidden] {
+  display: none;
+}
+
+/* --- Timeline ------------------------------------------------------------ */
+
+.timeline {
+  position: relative;
+  display: grid;
+  gap: 1.6rem;
+  padding-left: 1.6rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  width: 1px;
+  background: linear-gradient(var(--accent-border), var(--line));
+}
+
+.timeline__item {
+  position: relative;
+}
+
+.timeline__item::before {
+  content: '';
+  position: absolute;
+  left: calc(-1.6rem + 1px);
+  top: 0.55rem;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--accent);
+}
+
+/* --- Flow diagram -------------------------------------------------------- */
+
+.flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 1.1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+}
+
+.flow__step {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: var(--surface);
+  font-size: 0.83rem;
+  font-weight: 600;
+  color: var(--ink);
+  transition: border-color 0.2s var(--ease), transform 0.2s var(--ease);
+}
+
+.flow__step:hover {
+  border-color: var(--accent-border);
+  transform: translateY(-2px);
+}
+
+.flow__num {
+  display: grid;
+  place-items: center;
+  width: 1.2rem;
+  height: 1.2rem;
+  flex: none;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent-text);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-weight: 700;
+}
+
+.flow__arrow {
+  color: var(--faint);
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
+/* --- Key/value list ------------------------------------------------------ */
+
+.kv {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.kv__row {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.kv__label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+.kv__value {
+  color: var(--ink-2);
+  font-size: 0.95rem;
+}
+
+/* --- Definition blocks used in case studies ------------------------------ */
+
+.block {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.block__title {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.78rem;
+  font-family: var(--font-mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-text);
+}
+
+.check-list {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.check-list li {
+  position: relative;
+  padding-left: 1.55rem;
+  color: var(--ink-2);
+  font-size: 0.93rem;
+  line-height: 1.55;
+}
+
+.check-list li::before {
+  content: '';
+  position: absolute;
+  left: 0.15rem;
+  top: 0.5rem;
+  width: 0.72rem;
+  height: 0.72rem;
+  border-radius: 3px;
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-border);
+}
+
+.check-list--dot li::before {
+  border-radius: 50%;
+  background: var(--line-strong);
+  border-color: transparent;
+  width: 0.4rem;
+  height: 0.4rem;
+  top: 0.62rem;
+  left: 0.45rem;
+}
+
+.numbered {
+  display: grid;
+  gap: 0.45rem;
+  counter-reset: step;
+}
+
+.numbered li {
+  position: relative;
+  padding-left: 2.1rem;
+  color: var(--ink-2);
+  font-size: 0.93rem;
+  counter-increment: step;
+}
+
+.numbered li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 0.05rem;
+  display: grid;
+  place-items: center;
+  width: 1.45rem;
+  height: 1.45rem;
+  border-radius: 6px;
+  background: var(--surface-2);
+  border: 1px solid var(--line-strong);
+  color: var(--accent-text);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+/* --- Callout ------------------------------------------------------------- */
+
+.callout {
+  display: flex;
+  gap: 0.9rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--accent-border);
+  border-left-width: 3px;
+  border-radius: var(--radius);
+  background: var(--accent-soft);
+  color: var(--ink-2);
+  font-size: 0.93rem;
+}
+
+.callout--neutral {
+  border-color: var(--line-strong);
+  border-left-color: var(--line-strong);
+  background: var(--surface-2);
+}
+
+.callout--warn {
+  border-color: var(--warn);
+  border-left-color: var(--warn);
+  background: var(--warn-soft);
+}
+
+.callout .icon {
+  color: var(--accent-text);
+  margin-top: 0.15rem;
+}
+
+.callout--warn .icon {
+  color: var(--warn);
+}
+
+/* --- To top -------------------------------------------------------------- */
+
+.to-top {
+  position: fixed;
+  right: 1.1rem;
+  bottom: 1.1rem;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--ink-2);
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity 0.22s var(--ease), transform 0.22s var(--ease),
+    visibility 0.22s var(--ease), color 0.18s var(--ease), border-color 0.18s var(--ease);
+}
+
+.to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+.to-top:hover {
+  color: var(--accent-text);
+  border-color: var(--accent-border);
+}

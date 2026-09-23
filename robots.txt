@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Update the sitemap URL once the site is deployed.
+# Sitemap: https://REPLACE-WITH-YOUR-DOMAIN/sitemap.xml

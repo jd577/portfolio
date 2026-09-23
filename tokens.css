@@ -1,0 +1,105 @@
+/* ---------------------------------------------------------------------------
+   Design tokens — light and dark themes.
+   Colours were chosen to keep body text and UI text above WCAG AA contrast.
+   --------------------------------------------------------------------------- */
+
+:root {
+  color-scheme: light;
+
+  /* Brand */
+  --accent: #0a7568;
+  --accent-hover: #085f54;
+  --accent-soft: rgba(10, 117, 104, 0.1);
+  --accent-border: rgba(10, 117, 104, 0.28);
+  --accent-fg: #ffffff;
+  --accent-text: #075c52;
+
+  /* Neutrals */
+  --bg: #f6f8f9;
+  --bg-elev: #eef2f4;
+  --surface: #ffffff;
+  --surface-2: #f2f5f6;
+  --surface-3: #e9eef0;
+  --ink: #0d1a20;
+  --ink-2: #33454e;
+  --muted: #5c6f79;
+  --faint: #617480;
+  --line: #dfe6ea;
+  --line-strong: #c8d3d9;
+
+  /* Semantic */
+  --ok: #127a52;
+  --ok-soft: rgba(18, 122, 82, 0.12);
+  --info: #1f5fa8;
+  --info-soft: rgba(31, 95, 168, 0.1);
+  --warn: #96590c;
+  --warn-soft: rgba(150, 89, 12, 0.12);
+  --danger: #a62a26;
+  --danger-soft: rgba(166, 42, 38, 0.1);
+
+  /* Effects */
+  --shadow-xs: 0 1px 2px rgba(13, 26, 32, 0.05);
+  --shadow-sm: 0 2px 8px rgba(13, 26, 32, 0.06);
+  --shadow-md: 0 10px 28px -12px rgba(13, 26, 32, 0.22);
+  --shadow-lg: 0 24px 56px -28px rgba(13, 26, 32, 0.32);
+  --nav-bg: rgba(246, 248, 249, 0.82);
+  --grid-line: rgba(13, 26, 32, 0.045);
+  --code-bg: #f1f5f6;
+  --placeholder-bg: rgba(150, 89, 12, 0.1);
+
+  /* Type */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue',
+    'Noto Sans', 'Liberation Sans', Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono',
+    'Courier New', monospace;
+
+  /* Layout */
+  --container: 74rem;
+  --container-narrow: 58rem;
+  --radius-sm: 6px;
+  --radius: 12px;
+  --radius-lg: 18px;
+  --nav-h: 4.25rem;
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --accent: #35cbb4;
+  --accent-hover: #56dcc6;
+  --accent-soft: rgba(53, 203, 180, 0.12);
+  --accent-border: rgba(53, 203, 180, 0.32);
+  --accent-fg: #04211d;
+  --accent-text: #62dcc6;
+
+  --bg: #0a1116;
+  --bg-elev: #0e181e;
+  --surface: #101c22;
+  --surface-2: #15242c;
+  --surface-3: #1b2f39;
+  --ink: #e9f1f4;
+  --ink-2: #c2d2d9;
+  --muted: #93a7b1;
+  --faint: #8ba0ab;
+  --line: #1e313a;
+  --line-strong: #2b4653;
+
+  --ok: #3ec98f;
+  --ok-soft: rgba(62, 201, 143, 0.14);
+  --info: #63a9e8;
+  --info-soft: rgba(99, 169, 232, 0.12);
+  --warn: #e0ab55;
+  --warn-soft: rgba(224, 171, 85, 0.14);
+  --danger: #ef8378;
+  --danger-soft: rgba(239, 131, 120, 0.14);
+
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.32);
+  --shadow-md: 0 14px 32px -16px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 28px 64px -30px rgba(0, 0, 0, 0.75);
+  --nav-bg: rgba(10, 17, 22, 0.8);
+  --grid-line: rgba(233, 241, 244, 0.045);
+  --code-bg: #0d1a20;
+  --placeholder-bg: rgba(224, 171, 85, 0.12);
+}
