@@ -9,7 +9,10 @@ const CHANNELS = [
     label: 'Email',
     iconName: 'mail',
     placeholderLabel: '[Add Email]',
-    href: (value) => `mailto:${value}`,
+    // Opens a compose window in the browser (Gmail) so it works even on
+    // machines with no default mail app. The copy button stays as backup.
+    href: (value) =>
+      `https://mail.google.com/mail/?view=cm&fs=1&to=${value}&su=${encodeURIComponent(config.emailSubject)}`,
     linkLabel: (value) => value,
   },
   {
@@ -88,7 +91,7 @@ const channelCard = (channel) => {
     ? el('a', {
         class: 'contact-card',
         href: channel.href(value),
-        ...(channel.key === 'email' ? {} : { target: '_blank', rel: 'noreferrer noopener' }),
+        ...(channel.key === 'phone' ? {} : { target: '_blank', rel: 'noreferrer noopener' }),
         'aria-label': `${channel.label}: ${channel.linkLabel(value)}`,
       }, children)
     : el('div', { class: 'contact-card' }, children);
@@ -139,7 +142,12 @@ export const Contact = () => {
           ])
         : null,
       config.email
-        ? el('a', { class: 'btn btn--ghost', href: `mailto:${config.email}` }, [
+        ? el('a', {
+            class: 'btn btn--ghost',
+            href: `https://mail.google.com/mail/?view=cm&fs=1&to=${config.email}&su=${encodeURIComponent(config.emailSubject)}`,
+            target: '_blank',
+            rel: 'noreferrer noopener',
+          }, [
             icon('mail'),
             el('span', { text: 'Email me' }),
           ])

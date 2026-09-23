@@ -39,6 +39,7 @@ const config = {
 
   /* Real contact details (from CV). */
   email: 'jawadakhtar292@gmail.com',
+  emailSubject: 'SQA Engineering Opportunity — Jawad Akhtar (portfolio)',
   linkedin: 'https://www.linkedin.com/in/jawad-akhtar-b710023a9',
   github: 'https://github.com/jd577',
   cvUrl: 'assets/Jawad-Akhtar-CV.pdf',
@@ -2598,7 +2599,10 @@ const CHANNELS = [
     label: 'Email',
     iconName: 'mail',
     placeholderLabel: '[Add Email]',
-    href: (value) => `mailto:${value}`,
+    // Opens a compose window in the browser (Gmail) so it works even on
+    // machines with no default mail app. The copy button stays as backup.
+    href: (value) =>
+      `https://mail.google.com/mail/?view=cm&fs=1&to=${value}&su=${encodeURIComponent(config.emailSubject)}`,
     linkLabel: (value) => value,
   },
   {
@@ -2677,7 +2681,7 @@ const channelCard = (channel) => {
     ? el('a', {
         class: 'contact-card',
         href: channel.href(value),
-        ...(channel.key === 'email' ? {} : { target: '_blank', rel: 'noreferrer noopener' }),
+        ...(channel.key === 'phone' ? {} : { target: '_blank', rel: 'noreferrer noopener' }),
         'aria-label': `${channel.label}: ${channel.linkLabel(value)}`,
       }, children)
     : el('div', { class: 'contact-card' }, children);
@@ -2728,7 +2732,12 @@ const Contact = () => {
           ])
         : null,
       config.email
-        ? el('a', { class: 'btn btn--ghost', href: `mailto:${config.email}` }, [
+        ? el('a', {
+            class: 'btn btn--ghost',
+            href: `https://mail.google.com/mail/?view=cm&fs=1&to=${config.email}&su=${encodeURIComponent(config.emailSubject)}`,
+            target: '_blank',
+            rel: 'noreferrer noopener',
+          }, [
             icon('mail'),
             el('span', { text: 'Email me' }),
           ])
@@ -2789,7 +2798,13 @@ const Footer = () => {
   const links = el('nav', { class: 'footer__links', 'aria-label': 'Footer' }, [
     footerLink({ label: 'LinkedIn', iconName: 'linkedin', href: config.linkedin }),
     footerLink({ label: 'GitHub', iconName: 'github', href: config.github }),
-    footerLink({ label: 'Email', iconName: 'mail', href: config.email ? `mailto:${config.email}` : '' }),
+    footerLink({
+      label: 'Email',
+      iconName: 'mail',
+      href: config.email
+        ? `https://mail.google.com/mail/?view=cm&fs=1&to=${config.email}&su=${encodeURIComponent(config.emailSubject)}`
+        : '',
+    }),
     config.cvUrl
       ? el('a', { class: 'footer__link', href: config.cvUrl, download: config.cvFileName }, [
           icon('file'),

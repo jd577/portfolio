@@ -32,7 +32,13 @@ export const Footer = () => {
   const links = el('nav', { class: 'footer__links', 'aria-label': 'Footer' }, [
     footerLink({ label: 'LinkedIn', iconName: 'linkedin', href: config.linkedin }),
     footerLink({ label: 'GitHub', iconName: 'github', href: config.github }),
-    footerLink({ label: 'Email', iconName: 'mail', href: config.email ? `mailto:${config.email}` : '' }),
+    footerLink({
+      label: 'Email',
+      iconName: 'mail',
+      href: config.email
+        ? `https://mail.google.com/mail/?view=cm&fs=1&to=${config.email}&su=${encodeURIComponent(config.emailSubject)}`
+        : '',
+    }),
     config.cvUrl
       ? el('a', { class: 'footer__link', href: config.cvUrl, download: config.cvFileName }, [
           icon('file'),

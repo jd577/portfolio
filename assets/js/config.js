@@ -25,6 +25,7 @@ export const config = {
 
   /* Real contact details (from CV). */
   email: 'jawadakhtar292@gmail.com',
+  emailSubject: 'SQA Engineering Opportunity — Jawad Akhtar (portfolio)',
   linkedin: 'https://www.linkedin.com/in/jawad-akhtar-b710023a9',
   github: 'https://github.com/jd577',
   cvUrl: 'assets/Jawad-Akhtar-CV.pdf',
